@@ -12,13 +12,18 @@ public class Main {
 //Создайте два объекта автомобиля.
 
     public static void main(String[] args) {
-
+//=========Car-1===========
         MyDate renoRegistration = new MyDate(23, 12, 2012);
-
         Engine powerRenoClio = new Engine("бензин", "120 л.с");
+        Car reno = new Car("Reno clio", "red", "321-23", renoRegistration, powerRenoClio);
+//=========Car-1===========
+        MyDate renoRegistration2 = new MyDate(10, 2, 2022);
+        Engine powerRenoClio2 = new Engine("бензин", "160 л.с");
+        Car reno2 = new Car("Reno megane", "black", "145-12", renoRegistration2, powerRenoClio2);
 
-        Car reno = new Car("clio", "red", "321-23", renoRegistration, powerRenoClio);
 
         System.out.println(reno.toString());
+        System.out.println();
+        System.out.println(reno2.toString());
     }
 }
