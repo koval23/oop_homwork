@@ -10,7 +10,15 @@ public class Main {
 //Реализуйте метод toString в каждом классе.
 //Реализуйте метод конструктор в каждом классе.
 //Создайте два объекта автомобтля.
+
     public static void main(String[] args) {
 
+        MyDate renoRegistration = new MyDate(23, 12, 2012);
+
+        Engine powerRenoClio = new Engine("бензин", "120 л.с");
+
+        Car reno = new Car("clio", "red", "321-23", renoRegistration, powerRenoClio);
+
+        System.out.println(reno.toString());
     }
 }
