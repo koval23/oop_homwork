@@ -1,31 +1,42 @@
 package lesson_03;
 
 public class Car {
+    // В классе Car добавьте методы drive и stop. Первый должен заводить двигатель
+    // и писать, что такая-то машина поехала. Второй, соответственно глушить двигатель и останавливать машину.
     String brand;
     String color;
     String licensePlate;
     MyDate registrationDate;
     Engine engine;
-    boolean drive;
+    boolean flag = false;
 
-    public Car(String brand, String color, String licensePlate, MyDate registrationDate, Engine engine, boolean drive) {
+    public Car(String brand, String color, String licensePlate, MyDate registrationDate, Engine engine) {
         this.brand = brand;
         this.color = color;
         this.licensePlate = licensePlate;
         this.registrationDate = registrationDate;
         this.engine = engine;
-        this.drive = drive;
     }
 
     public String toString() {
-        return brand + "\n" + "Color: " + color + "\n" + licensePlate + "\n" + registrationDate.toString() + "\n" + engine.toString() + "\n" + driveOrNotDrive();
+        return brand + "\n" + "Color: " + color + "\n" + licensePlate + "\n" + registrationDate.toString() + "\n" + engine.toString() + "\n";
     }
 
-    public String driveOrNotDrive() {
-        if (drive) {
-            return "Drive";
+    public void drive() {
+        if (flag) {
+            System.out.println("Машина уже едет.");
         } else {
-            return "Not Drive";
+            flag = true;
+            System.out.println("Машина " + brand + " поехала!");
+        }
+    }
+
+    public void stop() {
+        if (flag) {
+            flag = false;
+            System.out.println("Машина " + brand + " остановилась!");
+        } else {
+            System.out.println("Машина стоит!");
         }
     }
 }
