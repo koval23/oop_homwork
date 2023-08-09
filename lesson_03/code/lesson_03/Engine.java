@@ -9,6 +9,6 @@ public class Engine {
         this.power = power;
     }
     public String toString(){
-        return "Мощность: "+power+"Тип: "+type;
+        return "Power: "+power+" л.с."+"\n"+"Type: "+type;
     }
 }

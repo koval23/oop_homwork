@@ -15,6 +15,6 @@ public class Car {
         this.engine = engine;
     }
     public String toString(){
-        return brand +"\n"+color+"\n"+licensePlate+"\n"+registrationDate.toString()+"\n"+engine.toString();
+        return brand +"\n"+"Color: "+color+"\n"+licensePlate+"\n"+registrationDate.toString()+"\n"+engine.toString();
     }
 }
