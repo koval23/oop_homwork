@@ -11,14 +11,11 @@ public class Main {
 //Реализуйте метод конструктор в каждом классе.
 //Создайте два объекта автомобиля.
 
-//#2 В классе Engine добавьте методы start и stop.
-// Каждый из них пусть выводит строку "Engine is started" "Engine is stopped".
 
 // В классе Car добавьте методы drive и stop. Первый должен заводить двигатель
 // и писать, что такая-то машина поехала. Второй, соответственно глушить двигатель и останавливать машину.
 
-// #3 ** Реализовать проверку, если машина уже едет, а я пытаюсь
-// вызвать метод drive, должно появляться сообщение, что машина уже едет.
+
 
 
     public static void main(String[] args) {
@@ -35,8 +32,13 @@ public class Main {
         System.out.println(car.toString());
         System.out.println();
         System.out.println(car2.toString());
-        car.drive();
-        car.stop();
+
+        car.engine.start();//Engine is started
+        car.drive();//Машина Reno clio поехала!
+        car.drive();//Машина уже едет.
+        car.stop();//Машина Reno clio остановилась!
+        car.engine.stop();//Engine is stopped
+
 
     }
 }
