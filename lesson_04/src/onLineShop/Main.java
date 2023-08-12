@@ -2,7 +2,8 @@ package onLineShop;
 
 public class Main {
     //    Допустим, мы пишем on-line магазин.
-
+    //TODO сделать рефактор class Product пересмотреть поля продукта
+    //TODO возможно каки ето добавит или удалить
 
     public static void main(String[] args) {
         Basket basket1 = new Basket();
@@ -14,7 +15,7 @@ public class Main {
 //       =================================
         System.out.println("======== Oder Alyona =============");
         Product phone1 = new Product("phone", "aiphon-10", 1500);
-        Product laptop = new Product("leptop", "MacBook", 1300);
+        Product laptop = new Product("laptop", "MacBook", 1300);
         Basket alenaOder = new Basket();
         alenaOder.add(phone1);
         alenaOder.add(laptop);
