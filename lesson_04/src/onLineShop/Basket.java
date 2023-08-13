@@ -12,7 +12,8 @@ public class Basket {
 //   + Реализовать метод, который вернет сумму заказа.
     private int size = 0; // Текущее количество товаров в корзине
     private Product[] arr = new Product[5]; // Массив для хранения товаров
-//================== ADD =========================================
+
+    //================== ADD =========================================
     // Метод для добавления товара в корзину
     public void add(Product product) {
         if (size >= arr.length) {
@@ -20,7 +21,7 @@ public class Basket {
         }
         arr[size] = product; // Добавляем товар в корзину
         size++; // Увеличиваем количество товаров
-        System.out.println("You have added in basket: "+ product.getName());
+        System.out.println("You have added in basket: " + product.getName());
     }
 
     // Метод для увеличения размера массива
@@ -61,8 +62,8 @@ public class Basket {
     // Метод для нахождения индекса товара в массиве
     public int findIndexElement(Product product) {
         for (int i = 0; i < size; i++) {
-            if (product.getId()==arr[i].getId()) {
-                System.out.println(arr[i] + " deleted");
+            if (product.getId() == arr[i].getId()) {
+                System.out.println(arr[i] + " DELETED");
                 return i; // Возвращаем индекс товара, если найден
             }
         }
@@ -75,12 +76,13 @@ public class Basket {
         for (int i = 0; i < size; i++) {
             System.out.println(arr[i].toString());
         }
+        System.out.println("Total price: " + sumOrder());
         System.out.println("===== YOUR BASKET END ======");
 
     }
 
     // Метод для расчета суммы стоимости товаров в корзине
-    public double sumOrder() {
+    private double sumOrder() {
         double sum = 0;
         for (int i = 0; i < size; i++) {
             sum += arr[i].getPrice();

@@ -29,6 +29,7 @@ public class Main {
         alenaOder.add(macBookPro);
         // Печать содержимого корзины
         alenaOder.printOrder();
+
         System.out.println("===================");
         // Удаление товаров из корзины
         alenaOder.deleteElement(macBookPro);
@@ -36,6 +37,7 @@ public class Main {
         alenaOder.deleteElement(appleWatchSeries6);
         // Печать содержимого корзины
         alenaOder.printOrder();
+
 
 
     }

@@ -47,6 +47,6 @@ public class Product {
 
     // Переопределение метода toString() для удобного вывода информации о товаре
     public String toString() {
-        return "Type product: "+type + "\nModel: (" + name + ") \nPrice: " + price;
+        return "Type product: "+type + " Model: (" + name + ") Price: " + price;
     }
 }
