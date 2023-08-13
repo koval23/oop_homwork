@@ -1,42 +1,87 @@
 package onLineShop;
 
+import java.util.UUID;
+
 public class Basket {
-    //   + Реализуйте класс Корзинка,
+    // Класс, представляющий корзину с товарами
+//   + Реализуйте класс Корзинка,
 //   + в которую можно добавить несколько товаров.
-//   ? Реализовать метод добавления
+//   + Реализовать метод удаления
 //   + и добавления товара в корзину.
 //   + Реализовать метод, который распечатает весь заказ.
 //   + Реализовать метод, который вернет сумму заказа.
-    private int size = 0;
-    private Product[] arr = new Product[5];
-
-    // добавляет продукт в массив
+    private int size = 0; // Текущее количество товаров в корзине
+    private Product[] arr = new Product[5]; // Массив для хранения товаров
+//================== ADD =========================================
+    // Метод для добавления товара в корзину
     public void add(Product product) {
         if (size >= arr.length) {
-            increaseArray();
+            increaseArray(); // Если корзина полностью заполнена, увеличиваем массив
         }
-        arr[size] = product;
-        size++;
+        arr[size] = product; // Добавляем товар в корзину
+        size++; // Увеличиваем количество товаров
+        System.out.println("You have added in basket: "+ product.getName());
     }
 
-    // увеличивает количество мест в корзине(массиве)
+    // Метод для увеличения размера массива
     private void increaseArray() {
         Product[] tempArray = new Product[arr.length * 2];
         for (int i = 0; i < arr.length; i++) {
             tempArray[i] = arr[i];
         }
-        arr = tempArray;
+        arr = tempArray; // Присваиваем увеличенный массив
+    }
+//================== ADD END =========================================
+
+    // Метод для удаления товара из корзины
+    public void deleteElement(Product product) {
+        size--; // Уменьшаем количество товаров
+
+        // Создаем новый массив для хранения оставшихся товаров
+        Product[] newProductArray = new Product[size];
+
+        // Находим индекс элемента, который хотим удалить
+        int indexElement = findIndexElement(product);
+
+        // Проверяем, существует ли элемент с таким индексом
+        if (indexElement != -1) {
+            for (int i = 0, newIndex = 0; i < size + 1; i++) {
+                if (i != indexElement) {
+                    newProductArray[newIndex++] = arr[i];
+                }
+            }
+        } else {
+            System.out.println("No such product"); // Выводим сообщение, если товар не найден
+            return;
+        }
+
+        arr = newProductArray; // Присваиваем новый массив
     }
 
-    //    метод, который распечатает весь заказ.
+    // Метод для нахождения индекса товара в массиве
+    public int findIndexElement(Product product) {
+        for (int i = 0; i < size; i++) {
+            if (product.getId()==arr[i].getId()) {
+                System.out.println(arr[i] + " deleted");
+                return i; // Возвращаем индекс товара, если найден
+            }
+        }
+        return -1; // Возвращаем -1, если товар не найден
+    }
+
+    // Метод для печати содержимого корзины
     public void printOrder() {
+        System.out.println("===== YOUR BASKET ======");
         for (int i = 0; i < size; i++) {
             System.out.println(arr[i].toString());
         }
+        System.out.println("===== YOUR BASKET END ======");
+
     }
 
+    // Метод для расчета суммы стоимости товаров в корзине
     public double sumOrder() {
-        int sum = 0;
+        double sum = 0;
         for (int i = 0; i < size; i++) {
             sum += arr[i].getPrice();
         }
