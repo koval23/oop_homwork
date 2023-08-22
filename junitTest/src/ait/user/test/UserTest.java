@@ -57,10 +57,22 @@ class UserTest {
 
     @Test
     void testEmailIncorrectSymbol() {
-        String invalidEmail = "jo!hn@gmx.de";
+        String invalidEmail = "jo!hn@gmx.com";
         user.setEmail(invalidEmail);
         assertEquals(email, user.getEmail());
     }
+//    ******************************************
+    @Test
+    void testEmailIncorrectSymbolSpace() {
+        String invalidEmail = " john@ mail.com ";
+        user.setEmail(invalidEmail);
+        assertEquals(email, user.getEmail());
+    }
+//    ******************************************
+
+
+
+
 //    ====================PASSWORD===============================
 void testValidPassword() {
     String validPasssword = "OlenaWork@21";
@@ -107,4 +119,13 @@ void testValidPassword() {
         user.setPassword(invalidPassword);
         assertEquals(password, user.getPassword());
     }
+//    ************************************
+@Test
+void testPasswordSymbolSpace() {
+    String invalidPassword = " OlenaWork21 ";
+    user.setPassword(invalidPassword);
+    assertEquals(password, user.getPassword());
+}
+//    ************************************
+
 }

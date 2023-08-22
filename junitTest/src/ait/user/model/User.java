@@ -6,7 +6,7 @@ public class User {
 
     public User(String email, String password) {
         setEmail(email);
-        this.password = password;
+        setPassword(password);
     }
 
     public String getEmail() {
@@ -26,59 +26,82 @@ public class User {
     // 3) min two symbol after last dot
     // 4) alphabetic, digits, '@', '.', '_', '-'
     //TODO Character?
+//    =========================
+//    Задача 1
+//    В проекте User из домашней работы, исправить
+//    валидацию емейла так, чтобы валидный емейл с пробелами
+//    вначале и в конце исправлялся и проходил валидаци. Скорректировать тест
 
-    private boolean emailIsValid(String email) {
-        int at = email.indexOf('@');
-        if (at == -1 || email.lastIndexOf('@') != at) {
-            return false;
-        }
-        if (email.indexOf('.', at + 1) == -1) {
-            return false;
-        }
-        if (email.lastIndexOf('.') >= email.length() - 2) {
-            return false;
-        }
-        for (int i = 0; i < email.length(); i++) {
-            char c = email.charAt(i);
-            if (!(Character.isDigit(c) || Character.isAlphabetic(c) || c == '@' || c == '.' || c == '_' || c == '-')) {
-                return false;
-            }
-        }
-        return true;
+//    Задача 2 advanced
+//    В проекте User из домашней работы,
+//    при валидации емейла и пароля,
+//    используя метод split,
+//    разделить емейл и пароль на массивы символов,
+//    и в цикле обходить эти массивы,
+//    проверяя каждый символ.
+//    После исправления, проверить реализацию тестами.
+//    "john@mail.com"
+//    =========================
+
+private boolean emailIsValid(String strEmail) {
+    // Удаляем лишние пробелы из начала и конца строки
+    String email = strEmail.trim();
+
+//        TODO***************************************
+          char[] chars = email.toCharArray();
+//        TODO***************************************
+
+    // Ищем символ @ в строке
+    int at = email.indexOf('@');
+
+    // Проверяем, что символ @ найден только один раз и не последний символ
+    if (at == -1 || email.lastIndexOf('@') != at) {
+        return false;
     }
 
-    /*
-TODO Homework Password
+    // Проверяем, есть ли точка после символа @
+    if (email.indexOf('.', at + 1) == -1) {
+        return false;
+    }
+
+    // Проверяем, что точка не находится слишком близко к концу строки
+    if (email.lastIndexOf('.') >= email.length() - 2) {
+        return false;
+    }
+
+    // Проверяем каждый символ в строке
+
+//        TODO***************************************
+        for (char c : chars) {
+        if (!(Character.isDigit(c) || Character.isAlphabetic(c) || c == '@' || c == '.' || c == '_' || c == '-' || c == ' ')) {
+            return false;
+        }
+    }
+//        TODO***************************************
+
+    // Если все проверки прошли успешно, то email считается действительным
+    return true;
+}
+
+//    ===========================
+
+/*
 1) + Min 8 symbols
 2) + Min one symbol in uppercase
 3) + Min one symbol in lowercase
 4) + Min one symbol is digit
 5) + Min one symbol is a special symbol (!%@*&)
 */
-//    private boolean passwordInValid(String password) {
-//        char[] strArr = password.toCharArray();
-//        String validPassword = "";
-//        if (password.length() < 8) {
-//            return false;
-//        }
-//        for (char c : strArr) {
-//            if (Character.isDigit(c)
-//                    || Character.isUpperCase(c)
-//                    || Character.isLowerCase(c)
-//                    || c == '!'
-//                    || c == '%'
-//                    || c == '@'
-//                    || c == '*'
-//                    || c == '&') {
-//                validPassword += c;
-//            }
-//        }
-//
-//        return password.equals(validPassword);
-//    }
-    private boolean isPasswordValid(String password) {
+
+    private boolean isPasswordValid(String userPassword) {
+
+//        TODO***************************************
+        String password = userPassword.trim();
+
+//        TODO***************************************
+
+
         char[] charArray = password.toCharArray(); // Преобразование пароля в массив символов
-        String validPassword = ""; // Инициализация строки для валидного пароля
 
         if (password.length() < 8) { // Проверка на минимальную длину пароля
             return false; // Возврат false, если длина пароля недостаточная
@@ -101,12 +124,9 @@ TODO Homework Password
             }
         }
 
-        // Проверка наличия всех необходимых условий для валидного пароля
-        if (isUpperCase && isLowerCase && isDigit && isSpecialSymbol) {
-            return true; // Возврат true, если все условия выполнены
-        }
+// Возврат false, если хотя бы одно условие не выполнено
+        return isUpperCase && isLowerCase && isDigit && isSpecialSymbol;
 
-        return false; // Возврат false, если хотя бы одно условие не выполнено
     }
 //    ===============================
 
@@ -115,10 +135,10 @@ TODO Homework Password
     }
 
     public void setPassword(String password) {
-        if(isPasswordValid(password)){
+        if (isPasswordValid(password)) {
             this.password = password;
-        }else{
-            System.out.println(password +" is not valid password");
+        } else {
+            System.out.println(password + " is not valid password");
         }
 
     }
