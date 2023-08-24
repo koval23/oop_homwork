@@ -4,7 +4,7 @@ import ait.employee.model.Employee;
 
 public class CompanyImpl implements Company {
     private Employee[] employees;
-    private int sze;
+    private int size;
 
     public CompanyImpl(int capacity) {
         employees = new Employee[capacity];
@@ -47,6 +47,5 @@ public class CompanyImpl implements Company {
 
     @Override
     public void printEmployees() {
-
     }
 }
