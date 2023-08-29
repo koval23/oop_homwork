@@ -3,12 +3,13 @@ package ait.cars.model;
 import java.util.Objects;
 
 public class Car {
-    private String regNumber;
-    private String model;
-    private String company;
-    private double engine;
-    private String color;
+    private String regNumber; // Регистрационный номер автомобиля
+    private String model;     // Модель автомобиля
+    private String company;   // Компания-производитель автомобиля
+    private double engine;    // Объем двигателя автомобиля
+    private String color;     // Цвет автомобиля
 
+    // Конструктор для создания объекта Car с заданными параметрами
     public Car(String regNumber, String model, String company, double engine, String color) {
         this.regNumber = regNumber;
         this.model = model;
@@ -16,8 +17,8 @@ public class Car {
         this.engine = engine;
         this.color = color;
     }
-//***************** get ***********************
 
+    // Методы для получения значений полей
     public String getRegNumber() {
         return regNumber;
     }
@@ -37,7 +38,8 @@ public class Car {
     public String getColor() {
         return color;
     }
-    //***************** set ***********************
+
+    // Методы для установки новых значений полей
     public void setRegNumber(String regNumber) {
         this.regNumber = regNumber;
     }
@@ -45,8 +47,8 @@ public class Car {
     public void setColor(String color) {
         this.color = color;
     }
-    //**************** toString ************************
 
+    // Метод toString для представления объекта в виде строки
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Car{");
@@ -58,8 +60,8 @@ public class Car {
         sb.append('}');
         return sb.toString();
     }
-//    *********** equals ***************
 
+    // Методы equals и hashCode для сравнения объектов Car
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

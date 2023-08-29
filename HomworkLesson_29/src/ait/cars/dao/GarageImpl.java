@@ -2,9 +2,11 @@ package ait.cars.dao;
 
 import ait.cars.model.Car;
 
+import java.util.function.Predicate;
+
 public class GarageImpl implements Garage {
     private Car[] cars;
-    private int size = 0;
+    private int size;
 
     // Конструктор, создает массив cars заданной вместимости
     public GarageImpl(int capacity) {
@@ -37,6 +39,7 @@ public class GarageImpl implements Garage {
     }
 
     // Находит car по номеру регистрации
+
     @Override
     public Car findCarByRegNumber(String regNumber) {
         for (int i = 0; i < size; i++) {
@@ -50,72 +53,47 @@ public class GarageImpl implements Garage {
     // Находит автомобили по модели
     @Override
     public Car[] findCarsByModel(String model) {
-        int count = 0;
-        for (int i = 0; i < size; i++) {
-            if (cars[i].getModel().equals(model)) {
-                count++;
-            }
-        }
-        Car[] carsByModel = new Car[count];
-        for (int i = 0, j = 0; i < size; i++) {
-            if (cars[i].getModel().equals(model)) {
-                carsByModel[j] = cars[i];
-                j++;
-            }
-        }
-        return carsByModel;
+
+        Predicate<Car> predicate = e -> e.getModel().equals(model);
+        return findCarsByPredicate(predicate);
     }
 
     // Находит автомобили по компании
     @Override
     public Car[] findCarsByCompany(String company) {
-        int count = 0;
-        for (int i = 0; i < size; i++) {
-            if (cars[i].getCompany().equals(company)) {
-                count++;
-            }
-        }
-        Car[] carsByCompany = new Car[count];
-        for (int i = 0, j = 0; i < size; i++) {
-            if (cars[i].getCompany().equals(company)) {
-                carsByCompany[j] = cars[i];
-                j++;
-            }
-        }
-        return carsByCompany;
+        ;
+        Predicate<Car> predicate = e -> e.getCompany().equals(company);
+        return findCarsByPredicate(predicate);
     }
 
     // Находит автомобили по цвету
     @Override
     public Car[] findCarsByColor(String color) {
-        int count = 0;
-        for (int i = 0; i < size; i++) {
-            if (cars[i].getColor().equals(color)) {
-                count++;
-            }
-        }
-        Car[] carsByColor = new Car[count];
-        for (int i = 0, j = 0; i < size; i++) {
-            if (cars[i].getColor().equals(color)) {
-                carsByColor[j] = cars[i];
-                j++;
-            }
-        }
-        return carsByColor;
+
+        Predicate<Car> predicate = e -> e.getColor().equals(color);
+        return findCarsByPredicate(predicate);
     }
 
     // Находит автомобили по диапазону мощности двигателя
     @Override
     public Car[] findCarsByEngine(double min, double max) {
+
+        Predicate<Car> predicate = e -> e.getEngine() > min && e.getEngine() < max;
+        return findCarsByPredicate(predicate);
+    }
+
+    //    ==========================================
+
+    private Car[] findCarsByPredicate(Predicate<Car> predicate) {
         int count = 0;
         for (int i = 0; i < size; i++) {
-            if (cars[i].getEngine() > min && cars[i].getEngine() < max) {
+            if (predicate.test(cars[i])) {
                 count++;
             }
         }
         Car[] carsByEngine = new Car[count];
         for (int i = 0, j = 0; i < size; i++) {
-            if (cars[i].getEngine() > min && cars[i].getEngine() < max) {
+            if (predicate.test(cars[i])) {
                 carsByEngine[j] = cars[i];
                 j++;
             }
